@@ -3,3 +3,4 @@ youtube-transcript-api
 streamlit
 joblib
 nltk
+sklearn
