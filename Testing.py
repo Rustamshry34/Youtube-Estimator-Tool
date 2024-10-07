@@ -3,6 +3,7 @@ from googleapiclient.discovery import build
 from youtube_transcript_api import YouTubeTranscriptApi
 from googleapiclient.errors import HttpError
 from selenium import webdriver
+from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -115,7 +116,7 @@ def get_video_details(video_id):
 
 def check_sponsorship_disclaimer(video_url):
 
-    driver = webdriver.Chrome()
+    driver = driver = webdriver.Chrome(ChromeDriverManager().install())
 
     driver.get(video_url)
 
