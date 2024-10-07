@@ -114,12 +114,14 @@ def get_video_details(video_id):
 def check_sponsorship_disclaimer(video_url):
 
     chrome_options = Options()
-    chrome_options.add_argument("--headless")  # Run in headless mode
+    chrome_options.add_argument("--headless")  
     chrome_options.add_argument("--no-sandbox")
     chrome_options.add_argument("--disable-dev-shm-usage")
     
-    driver = webdriver.Chrome(options=chrome_options)
-    
+    service = Service(executable_path="C:\chromedriver-win64\chromedriver-win64\chromedriver") 
+
+    driver = webdriver.Chrome(service=service,options=chrome_options)
+
     driver.get(video_url)
 
     time.sleep(5)
