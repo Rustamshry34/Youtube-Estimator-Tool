@@ -31,6 +31,7 @@ youtube = build('youtube', 'v3', developerKey=api_key)
 
 model = joblib.load('sentiment_model.pkl')
 #vectorizer = joblib.load('tfidf_vectorizer.pkl')
+driver = driver = webdriver.Chrome(ChromeDriverManager().install())
 
 
 lemmatizer = WordNetLemmatizer()
@@ -115,8 +116,6 @@ def get_video_details(video_id):
 
 
 def check_sponsorship_disclaimer(video_url):
-
-    driver = driver = webdriver.Chrome(ChromeDriverManager().install())
 
     driver.get(video_url)
 
