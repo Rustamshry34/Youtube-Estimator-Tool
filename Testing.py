@@ -9,7 +9,6 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import pandas as pd
 from io import StringIO
-import matplotlib.pyplot as plt
 import joblib
 import time
 import requests
