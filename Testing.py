@@ -53,7 +53,6 @@ def download_vect(destination):
 
 destination_V = "tfidf_vectorizer.pkl"
 download_vect(destination_V)
-
 vectorizer = joblib.load('tfidf_vectorizer.pkl')
 
 
