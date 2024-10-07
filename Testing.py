@@ -3,6 +3,7 @@ from googleapiclient.discovery import build
 from youtube_transcript_api import YouTubeTranscriptApi
 from googleapiclient.errors import HttpError
 from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
