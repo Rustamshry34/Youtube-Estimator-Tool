@@ -17,14 +17,13 @@ import requests
 import re
 import numpy as np
 import nltk
-nltk.data.path.append('C:/Users/48451/nltk_data')  
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 from nltk.stem import WordNetLemmatizer
-nltk.download('punkt', download_dir='C:/Users/48451/nltk_data')
-nltk.download('stopwords', download_dir='C:/Users/48451/nltk_data')
-nltk.download('wordnet', download_dir='C:/Users/48451/nltk_data' )
-nltk.download('punkt_tab', download_dir='C:/Users/48451/nltk_data' )
+nltk.download('punkt')
+nltk.download('stopwords')
+nltk.download('wordnet')
+nltk.download('punkt_tab')
 
 
 api_key = 'AIzaSyBmM-Z_PfxgXwOlnGNff4OzWCASjMIrpnw'
