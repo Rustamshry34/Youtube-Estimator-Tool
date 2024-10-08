@@ -9,7 +9,6 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-import undetected_chromedriver as uc
 import pandas as pd
 from io import StringIO
 import joblib
@@ -114,8 +113,14 @@ def get_video_details(video_id):
 
 def check_sponsorship_disclaimer(video_url):
 
-    driver = uc.Chrome(headless=True)
-    
+    chrome_options = Options()
+    chrome_options.add_argument("--headless")  # Run in headless mode
+    chrome_options.add_argument("--no-sandbox")
+    chrome_options.add_argument("--disable-dev-shm-usage")
+
+    service = Service(ChromeDriverManager().install())
+
+    driver = webdriver.Chrome(service=service, options=chrome_options)
     driver.get(video_url)
 
     time.sleep(5)
