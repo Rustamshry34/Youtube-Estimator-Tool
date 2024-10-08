@@ -34,6 +34,13 @@ model = joblib.load('sentiment_model.pkl')
 
 lemmatizer = WordNetLemmatizer()
 
+chrome_options = Options()
+chrome_options.add_argument("--headless")  # Run in headless mode
+chrome_options.add_argument("--no-sandbox")
+chrome_options.add_argument("--disable-dev-shm-usage")
+
+service = Service(ChromeDriverManager().install())
+driver = webdriver.Chrome(service=service, options=chrome_options)
 
 def download_vect(destination):
 
@@ -113,14 +120,6 @@ def get_video_details(video_id):
 
 def check_sponsorship_disclaimer(video_url):
 
-    chrome_options = Options()
-    chrome_options.add_argument("--headless")  # Run in headless mode
-    chrome_options.add_argument("--no-sandbox")
-    chrome_options.add_argument("--disable-dev-shm-usage")
-
-    service = Service(ChromeDriverManager().install())
-
-    driver = webdriver.Chrome(service=service, options=chrome_options)
     driver.get(video_url)
 
     time.sleep(5)
