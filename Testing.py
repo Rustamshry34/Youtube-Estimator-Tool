@@ -36,20 +36,24 @@ model = joblib.load('sentiment_model.pkl')
 lemmatizer = WordNetLemmatizer()
 
 
-file_id = "1iSkNMFXU5BXNNE9OyubvmSEsCFDRk-5w"
-download_url = f'https://drive.google.com/uc?export=download&id={file_id}'
-destination = "tfidf_vectorizer.pkl"
-    
-response = requests.get(download_url)
-  if response.status_code == 200:
-     with open(destination, 'wb') as f:
-        f.write(response.content)
+
+def download_vect():
+
+    file_id = "1iSkNMFXU5BXNNE9OyubvmSEsCFDRk-5w"
+    download_url = f'https://drive.google.com/uc?export=download&id={file_id}'
+    destination = "tfidf_vectorizer.pkl"
+
+    response = requests.get(download_url)
+    if response.status_code == 200:
+        with open(destination, 'wb') as f:
+            f.write(response.content)
         print(f"Downloaded vectorizer to {destination}")
-  else:
+    else:
         print(f"Failed to download file: Status code {response.status_code}")
 
-vectorizer = joblib.load('tfidf_vectorizer.pkl')
 
+download_vect()
+vectorizer = joblib.load('tfidf_vectorizer.pkl')
 
 
 def get_channel_videos(channel_id, max_videos=60):
