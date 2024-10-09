@@ -113,7 +113,9 @@ def get_video_details(video_id):
 
 def check_sponsorship_disclaimer(video_url):
 
-    driver = uc.Chrome(headless=True)
+    #driver = uc.Chrome(headless=True)
+
+    driver = webdriver.Chrome(ChromeDriverManager().install())
 
     driver.get(video_url)
 
