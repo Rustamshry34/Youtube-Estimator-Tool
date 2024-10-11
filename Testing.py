@@ -114,7 +114,7 @@ def get_video_details(video_id):
 
 def check_sponsorship_disclaimer(video_url):
 
-    driver = uc.Chrome(headless=True)
+    #driver = uc.Chrome(headless=True)
     
     chrome_options = Options()
     chrome_options.add_argument("--headless")  
@@ -122,7 +122,8 @@ def check_sponsorship_disclaimer(video_url):
     chrome_options.add_argument("--disable-dev-shm-usage")
 
     #driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
-        #driver = webdriver.Chrome(ChromeDriverManager().install())
+
+    driver = webdriver.Chrome(ChromeDriverManager().install())
     driver.get(video_url)
 
     time.sleep(5)
