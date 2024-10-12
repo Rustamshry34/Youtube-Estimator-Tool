@@ -117,7 +117,7 @@ def check_sponsorship_disclaimer(video_url):
     response = requests.get(video_url)
     soup = BeautifulSoup(response.content, 'html.parser')
 
-    disclaimer = soup.find_all(text=lambda text: "Includes paid promotion" in text)
+    disclaimer = soup.find_all(string=lambda text: "Includes paid promotion" in text)
     if disclaimer:
         print("Sponsorship disclaimer found!")
         return True
