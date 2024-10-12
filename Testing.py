@@ -48,7 +48,7 @@ gdown.download(download_url, destination, quiet=False)
 vectorizer = joblib.load(destination)
 
 
-def get_channel_videos(channel_id, max_videos=60):
+def get_channel_videos(channel_id, max_videos=15):
     videos = []
     next_page_token = None
     base_video_url = "https://www.youtube.com/watch?v="
@@ -57,7 +57,7 @@ def get_channel_videos(channel_id, max_videos=60):
         request = youtube.search().list(
             part='snippet',
             channelId=channel_id,
-            maxResults=min(50, max_videos - len(videos)),  
+            maxResults=min(10, max_videos - len(videos)),  
             type='video',
             order='date',  
             pageToken=next_page_token 
