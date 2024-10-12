@@ -9,7 +9,8 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-import undetected_chromedriver as uc
+import undetected_chromedriver as UC
+from bs4 import BeautifulSoup
 import pandas as pd
 from io import StringIO
 import joblib
@@ -113,40 +114,16 @@ def get_video_details(video_id):
 
 
 def check_sponsorship_disclaimer(video_url):
+    response = requests.get(video_url)
+    soup = BeautifulSoup(response.content, 'html.parser')
 
-    #driver = uc.Chrome(headless=True)
-    
-    chrome_options = Options()
-    chrome_options.add_argument("--headless")
-    chrome_options.add_argument("--disable-gpu")
+    disclaimer = soup.find_all(text=lambda text: "Includes paid promotion" in text)
+    if disclaimer:
+        print("Sponsorship disclaimer found!")
+        return True
 
-    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
-
-    #driver = webdriver.Chrome(ChromeDriverManager().install())
-    driver.get(video_url)
-
-    time.sleep(5)
-
-    try:
-        WebDriverWait(driver, 5).until(
-            EC.element_to_be_clickable((By.XPATH, "//button[text()='Reject all']"))
-            ).click()
-    except Exception as e:
-        print("")
-
-    time.sleep(5)  
-
-    try:
-        disclaimer_element = driver.find_element(By.XPATH, "//*[contains(text(), 'Includes paid promotion')]")
-        if disclaimer_element:
-            print("Sponsorship disclaimer found!")
-            return True
-    except Exception as e:
-        print("No sponsorship disclaimer found")
-
-    driver.quit()
+    print("No sponsorship disclaimer found")
     return False
-
 
 
 def get_comments(video_id):
