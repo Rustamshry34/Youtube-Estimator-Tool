@@ -10,7 +10,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import undetected_chromedriver as UC
-from bs4 import BeautifulSoup
+from playwright.sync_api import sync_playwright
 import pandas as pd
 from io import StringIO
 import joblib
@@ -105,16 +105,25 @@ def get_video_details(video_id):
 
 
 def check_sponsorship_disclaimer(video_url):
-    response = requests.get(video_url)
-    soup = BeautifulSoup(response.content, 'html.parser')
+    with sync_playwright() as p:
+        browser = p.chromium.launch(headless=True)
+        page = browser.new_page()
+        page.goto(video_url)
 
-    disclaimer = soup.find_all(string=lambda text: "Includes paid promotion" in text)
-    if disclaimer:
-        print("Sponsorship disclaimer found!")
-        return True
+        try:
+            reject_button = page.locator("//button[text()='Reject all']")
+            reject_button.click(timeout=5000)
+        except:
+            pass  # If button is not found, ignore
 
-    print("No sponsorship disclaimer found")
-    return False
+        disclaimer = page.locator("//*[contains(text(), 'Includes paid promotion')]")
+        if disclaimer.count() > 0:
+            print("Sponsorship disclaimer found!")
+            return True
+        
+        print("No sponsorship disclaimer found")
+        browser.close()
+        return False
 
 
 def get_comments(video_id):
