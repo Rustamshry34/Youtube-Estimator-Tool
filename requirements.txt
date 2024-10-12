@@ -10,4 +10,4 @@ numpy==1.26.3
 webdriver_manager==4.0.2
 undetected_chromedriver==3.5.5
 setuptools==75.1.0
-
+beautifulsoup4== 4.12.3
