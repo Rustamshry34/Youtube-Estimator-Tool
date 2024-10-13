@@ -32,7 +32,6 @@ nltk.download('punkt_tab')
 
 api_key = 'AIzaSyBmM-Z_PfxgXwOlnGNff4OzWCASjMIrpnw'
 youtube = build('youtube', 'v3', developerKey=api_key)
-os.environ["PLAYWRIGHT_BROWSERS_PATH"] = "0"
 
 model = joblib.load('sentiment_model.pkl')
 #vectorizer = joblib.load('tfidf_vectorizer.pkl')
@@ -107,6 +106,7 @@ def get_video_details(video_id):
 
 
 def check_sponsorship_disclaimer(video_url):
+    os.environ["PLAYWRIGHT_BROWSERS_PATH"] = "0"
     with sync_playwright() as p:
         browser = p.chromium.launch()
         page = browser.new_page()
