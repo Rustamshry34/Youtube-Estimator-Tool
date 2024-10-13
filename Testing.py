@@ -106,7 +106,7 @@ def get_video_details(video_id):
 
 def check_sponsorship_disclaimer(video_url):
     with sync_playwright() as p:
-        browser = p.chromium.launch()
+        browser = p.webkit.launch()
         page = browser.new_page()
         page.goto(video_url)
 
