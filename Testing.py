@@ -30,7 +30,7 @@ nltk.download('wordnet')
 nltk.download('punkt_tab')
 
 
-api_key = 'AIzaSyBePYCfIvOmeYmyCGmWrLIRObVBk5HOJXs'
+api_key = 'AIzaSyBmM-Z_PfxgXwOlnGNff4OzWCASjMIrpnw'
 youtube = build('youtube', 'v3', developerKey=api_key)
 os.environ["PLAYWRIGHT_BROWSERS_PATH"] = "0"
 
