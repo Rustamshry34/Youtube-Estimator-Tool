@@ -18,6 +18,7 @@ import gdown
 import time
 import requests
 import re
+import os
 import numpy as np
 import nltk
 from nltk.corpus import stopwords
@@ -31,6 +32,7 @@ nltk.download('punkt_tab')
 
 api_key = 'AIzaSyBePYCfIvOmeYmyCGmWrLIRObVBk5HOJXs'
 youtube = build('youtube', 'v3', developerKey=api_key)
+os.environ["PLAYWRIGHT_BROWSERS_PATH"] = "0"
 
 model = joblib.load('sentiment_model.pkl')
 #vectorizer = joblib.load('tfidf_vectorizer.pkl')
