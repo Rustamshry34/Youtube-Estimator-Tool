@@ -48,6 +48,9 @@ gdown.download(download_url, destination, quiet=False)
 
 vectorizer = joblib.load(destination)
 
+if not os.path.exists('.local-browsers'):
+    playwright.install()
+
 
 def get_channel_videos(channel_id, max_videos=15):
     videos = []
