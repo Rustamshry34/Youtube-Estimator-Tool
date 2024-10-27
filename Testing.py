@@ -30,7 +30,8 @@ nltk.download('wordnet')
 nltk.download('punkt_tab')
 
 
-api_key = 'AIzaSyBmM-Z_PfxgXwOlnGNff4OzWCASjMIrpnw'
+#api_key = 'AIzaSyBmM-Z_PfxgXwOlnGNff4OzWCASjMIrpnw'
+api_key= 'AIzaSyBePYCfIvOmeYmyCGmWrLIRObVBk5HOJXs'
 youtube = build('youtube', 'v3', developerKey=api_key)
 
 model = joblib.load('sentiment_model.pkl')
